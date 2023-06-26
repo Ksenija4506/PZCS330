@@ -16,13 +16,13 @@ class GetBikeUseCase @Inject constructor(
 ){
     operator fun invoke(bikeId : Int) : Flow<Resource<BikeDetails>> = flow {
         try{
-            emit(Resource.Loading())
+            emit(Resource.Loading<BikeDetails>())
             val bike = repository.getBikeById(bikeId).toBikeDetails()
-            emit(Resource.Success(bike))
+            emit(Resource.Success<BikeDetails>(bike))
         } catch (e: HttpException){
-            emit(Resource.Error(e.localizedMessage ?: "An unexpected error occurred"))
+            emit(Resource.Error<BikeDetails>(e.localizedMessage ?: "An unexpected error occurred"))
         } catch (e: IOException) {
-            emit((Resource.Error("Could not reach server. Check your internet connection.")))
+            emit((Resource.Error<BikeDetails>("Could not reach server. Check your internet connection.")))
         }
     }
 }
