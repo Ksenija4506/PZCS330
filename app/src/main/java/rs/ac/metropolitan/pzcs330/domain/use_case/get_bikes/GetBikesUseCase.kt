@@ -23,6 +23,7 @@ class GetBikesUseCase @Inject constructor(
             emit(Resource.Error<List<Bike>>(e.localizedMessage ?: "An unexpected error occurred"))
         } catch (e: IOException) {
             emit((Resource.Error<List<Bike>>("Could not reach server. Check your internet connection.")))
+            e.printStackTrace()
         }
     }
 }

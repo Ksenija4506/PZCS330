@@ -37,7 +37,7 @@ class BikeDetailViewModel @Inject constructor(
                     _state.value = BikeDetailState(bike = result.data)
                 }
                 is Resource.Error -> {
-                    _state.value = BikeDetailState(error = result.message ?: "An unexpected error occured")
+                    _state.value = BikeDetailState(error = result.message ?: "An unexpected error occurred")
                 }
                 is Resource.Loading -> {
                     _state.value = BikeDetailState(isLoading = true)
